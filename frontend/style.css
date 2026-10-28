@@ -1,0 +1,274 @@
+/* ====================================================================
+   ESTILO CLEAN & MODERNO — RESPOSTAS DIRETAS GEEKSHOP
+   Paleta: Midnight Navy (#0a0f1d), Card (#131c31), Acentos em Ciano e Esmeralda
+   ==================================================================== */
+
+:root {
+  --bg-dark: #0a0f1d;
+  --bg-card: #131c31;
+  --bg-card-sub: #19243e;
+  --border-subtle: #223050;
+
+  --cyan: #06b6d4;
+  --cyan-bright: #38bdf8;
+  --purple: #8b5cf6;
+  --emerald: #10b981;
+  --rose: #f43f5e;
+  --amber: #f59e0b;
+
+  --text-primary: #f8fafc;
+  --text-muted: #94a3b8;
+  --text-dim: #64748b;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+body {
+  background-color: var(--bg-dark);
+  color: var(--text-primary);
+  line-height: 1.6;
+  padding-bottom: 30px;
+}
+
+.container {
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.flex-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Header */
+.header {
+  padding: 20px 0;
+  background: #0f172a;
+  border-bottom: 1px solid var(--border-subtle);
+  margin-bottom: 28px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.badge-brand {
+  background: linear-gradient(135deg, var(--purple), var(--cyan));
+  color: #fff;
+  font-weight: 800;
+  font-size: 0.85rem;
+  padding: 6px 14px;
+  border-radius: 8px;
+  letter-spacing: 1px;
+}
+
+.brand h1 {
+  font-size: 1.25rem;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+}
+
+.subtitle {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.pill {
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+.pill-online {
+  background: rgba(16, 185, 129, 0.15);
+  color: #34d399;
+  border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+/* Estrutura das Seções */
+.main-content {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.section-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 14px;
+  padding: 24px;
+  box-shadow: 0 8px 20px -6px rgba(0, 0, 0, 0.4);
+}
+
+.card-head {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 14px;
+}
+
+.badge-num {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 1.1rem;
+}
+
+.num-1 { background: rgba(56, 189, 248, 0.2); color: #38bdf8; }
+.num-2 { background: rgba(244, 63, 94, 0.2); color: #fb7185; }
+.num-3 { background: rgba(16, 185, 129, 0.2); color: #34d399; }
+.num-4 { background: rgba(245, 158, 11, 0.2); color: #fbbf24; }
+.num-5 { background: rgba(139, 92, 246, 0.2); color: #c4b5fd; }
+
+.card-head h2 {
+  font-size: 1.15rem;
+  font-weight: 700;
+}
+
+.badge-cmd {
+  font-size: 0.72rem;
+  color: var(--cyan);
+  font-family: 'Fira Code', monospace;
+  font-weight: 600;
+}
+
+/* Caixa com a Resposta Direta */
+.answer-box {
+  background: var(--bg-card-sub);
+  border-left: 4px solid var(--cyan);
+  border-radius: 0 8px 8px 0;
+  padding: 14px 18px;
+  margin-bottom: 16px;
+}
+
+.answer-text {
+  font-size: 1.05rem;
+  color: #e2e8f0;
+}
+
+.val-hl {
+  font-weight: 800;
+  padding: 2px 6px;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.c-cyan { color: #38bdf8; }
+.c-purple { color: #c084fc; }
+.c-green { color: #34d399; }
+.c-rose { color: #fb7185; }
+.c-amber { color: #fbbf24; }
+
+/* Status da Missão 1 */
+.status-wrap {
+  margin-top: 10px;
+}
+
+.status-label {
+  display: block;
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+
+.tag-flow {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.tag-item {
+  background: rgba(6, 182, 212, 0.15);
+  border: 1px solid rgba(6, 182, 212, 0.3);
+  color: #38bdf8;
+  padding: 5px 12px;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+/* Tabelas Limpas */
+.table-title {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  margin: 14px 0 8px;
+}
+
+.table-box {
+  overflow-x: auto;
+  border-radius: 8px;
+  border: 1px solid var(--border-subtle);
+}
+
+.clean-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.clean-table th,
+.clean-table td {
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--border-subtle);
+  font-size: 0.9rem;
+}
+
+.clean-table th {
+  background: #0d1527;
+  color: var(--text-dim);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  font-weight: 700;
+}
+
+.clean-table tr:hover td {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.rank-tag {
+  font-weight: 800;
+  color: var(--cyan);
+}
+
+.price-text {
+  color: #34d399;
+  font-weight: 700;
+}
+
+.pill-count {
+  background: rgba(16, 185, 129, 0.15);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  color: #34d399;
+  padding: 2px 10px;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+/* Footer */
+.footer {
+  margin-top: 30px;
+  padding: 20px 0;
+  border-top: 1px solid var(--border-subtle);
+  color: var(--text-dim);
+  font-size: 0.8rem;
+}
+
+.text-center {
+  text-align: center;
+}

@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GeekShop — Respostas Oficiais do Desafio SQL</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Fira+Code:wght@500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Barra Superior Limpa -->
+  <header class="header">
+    <div class="container flex-between">
+      <div class="brand">
+        <span class="badge-brand">SQL</span>
+        <div>
+          <h1>INVESTIGADORES DA GEEKSHOP</h1>
+          <p class="subtitle">Resultado direto das 10 missões</p>
+        </div>
+      </div>
+      <div id="status-conexao" class="pill pill-online">Carregando dados...</div>
+    </div>
+  </header>
+
+  <main class="container main-content">
+
+    <!-- GRÁFICO EM TEMPO REAL: atualiza automaticamente consultando o banco -->
+    <section class="section-card" id="painel-grafico-tempo-real">
+      <div class="card-head">
+        <div class="badge-num num-5">↗</div>
+        <div>
+          <h2>Visão geral em tempo real</h2>
+          <span class="badge-cmd">DADOS DIRETOS DO BANCO • ATUALIZAÇÃO AUTOMÁTICA</span>
+        </div>
+      </div>
+      <p class="answer-text">O gráfico consulta o banco automaticamente a cada 3 segundos. Ao adicionar ou excluir clientes, produtos ou pedidos no banco, os números e as barras serão atualizados.</p>
+      <div class="table-box" style="padding:18px;">
+        <canvas id="grafico-tempo-real" height="120" aria-label="Gráfico de quantidade de clientes, produtos e pedidos" role="img" style="width:100%;height:260px;display:block;"></canvas>
+      </div>
+      <p id="grafico-atualizado" class="status-label">Aguardando primeira consulta...</p>
+    </section>
+
+
+
+    <!-- ========================================== -->
+    <!-- MISSÃO 1: CONHECENDO A GEEKSHOP -->
+    <!-- ========================================== -->
+    <section class="section-card">
+      <div class="card-head">
+        <div class="badge-num num-1">1</div>
+        <div>
+          <h2>Missão 1 — Conhecendo a GeekShop</h2>
+          <span class="badge-cmd">SELECT • COUNT • DISTINCT</span>
+        </div>
+      </div>
+
+      <div class="answer-box">
+        <p class="answer-text">
+          🎯 <strong>Resultado:</strong> O banco de dados possui 
+          <span id="m1-clientes" class="val-hl c-cyan">0</span> clientes cadastrados, 
+          <span id="m1-produtos" class="val-hl c-purple">0</span> produtos no catálogo e 
+          <span id="m1-pedidos" class="val-hl c-green">0</span> pedidos realizados.
+        </p>
+      </div>
+
+      <div class="status-wrap">
+        <span class="status-label">Status únicos de pedidos encontrados (DISTINCT):</span>
+        <div id="m1-status-list" class="tag-flow"></div>
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- MISSÃO 2: PRODUTOS DE LUXO -->
+    <!-- ========================================== -->
+    <section class="section-card">
+      <div class="card-head">
+        <div class="badge-num num-2">2</div>
+        <div>
+          <h2>Missão 2 — Produtos de Luxo</h2>
+          <span class="badge-cmd">ORDER BY • LIMIT 10 • MAX • MIN</span>
+        </div>
+      </div>
+
+      <div class="answer-box">
+        <p class="answer-text">
+          🎯 <strong>Resultado:</strong> O produto mais caro custa 
+          <span id="m2-maior" class="val-hl c-rose">R$ 0,00</span>, o mais barato custa 
+          <span id="m2-menor" class="val-hl c-green">R$ 0,00</span> e a diferença de preço entre eles é de 
+          <span id="m2-dif" class="val-hl c-cyan">R$ 0,00</span>.
+        </p>
+      </div>
+
+      <h3 class="table-title">Os 10 Produtos Mais Caros:</h3>
+      <div class="table-box">
+        <table class="clean-table">
+          <thead>
+            <tr>
+              <th style="width: 80px;">Posição</th>
+              <th>Nome do Produto</th>
+              <th style="width: 160px;">Preço</th>
+            </tr>
+          </thead>
+          <tbody id="m2-top10-corpo"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- MISSÃO 3: OPERAÇÃO GAMER -->
+    <!-- ========================================== -->
+    <section class="section-card">
+      <div class="card-head">
+        <div class="badge-num num-3">3</div>
+        <div>
+          <h2>Missão 3 — Operação Gamer</h2>
+          <span class="badge-cmd">LIKE '%Gamer%' • WHERE • ORDER BY preco ASC</span>
+        </div>
+      </div>
+
+      <div class="answer-box">
+        <p class="answer-text">
+          🎯 <strong>Resultado:</strong> Foram localizados 
+          <span id="m3-total" class="val-hl c-green">0</span> produtos que possuem a palavra "Gamer" no nome, organizados do menor para o maior preço:
+        </p>
+      </div>
+
+      <div class="table-box">
+        <table class="clean-table">
+          <thead>
+            <tr>
+              <th style="width: 80px;">ID</th>
+              <th>Produto Gamer</th>
+              <th style="width: 180px;">Preço (Menor ao Maior)</th>
+            </tr>
+          </thead>
+          <tbody id="m3-produtos-corpo"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- MISSÃO 4: CLIENTES ESPALHADOS PELO BRASIL -->
+    <!-- ========================================== -->
+    <section class="section-card">
+      <div class="card-head">
+        <div class="badge-num num-4">4</div>
+        <div>
+          <h2>Missão 4 — Clientes Espalhados pelo Brasil</h2>
+          <span class="badge-cmd">GROUP BY cidade • COUNT • LIMIT 5</span>
+        </div>
+      </div>
+
+      <div class="answer-box">
+        <p class="answer-text">
+          🎯 <strong>Resultado:</strong> A cidade com a maior quantidade de clientes cadastrados é 
+          <span id="m4-top-cidade" class="val-hl c-cyan">--</span>.
+        </p>
+      </div>
+
+      <h3 class="table-title">Top 5 Cidades com Mais Clientes:</h3>
+      <div class="table-box">
+        <table class="clean-table">
+          <thead>
+            <tr>
+              <th style="width: 90px;">Ranking</th>
+              <th>Cidade</th>
+              <th style="width: 220px;">Total de Clientes</th>
+            </tr>
+          </thead>
+          <tbody id="m4-cidades-corpo"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- MISSÃO 5: VIAGEM NO TEMPO -->
+    <!-- ========================================== -->
+    <section class="section-card">
+      <div class="card-head">
+        <div class="badge-num num-5">5</div>
+        <div>
+          <h2>Missão 5 — Viagem no Tempo</h2>
+          <span class="badge-cmd">BETWEEN '2026-03-01' AND '2026-06-30' • COUNT • SUM</span>
+        </div>
+      </div>
+
+      <div class="answer-box">
+        <p class="answer-text">
+          🎯 <strong>Resultado:</strong> Entre março e junho de 2026 foram realizados 
+          <span id="m5-pedidos" class="val-hl c-amber">0</span> pedidos, totalizando um valor acumulado de 
+          <span id="m5-valor" class="val-hl c-green">R$ 0,00</span>.
+        </p>
+      </div>
+    </section>
+
+
+    <!-- MISSÃO 6 -->
+    <section class="section-card">
+      <div class="card-head"><div class="badge-num num-1">6</div><div><h2>Missão 6 — Os Campeões de Vendas</h2><span class="badge-cmd">JOIN • GROUP BY • SUM • LIMIT</span></div></div>
+      <div class="answer-box"><p class="answer-text">🎯 <strong>Resposta:</strong> Os cinco produtos com mais unidades vendidas em pedidos entregues aparecem abaixo.</p></div>
+      <div class="table-box"><table class="clean-table"><thead><tr><th>Ranking</th><th>Produto</th><th>Unidades vendidas</th></tr></thead><tbody id="m6-corpo"></tbody></table></div>
+    </section>
+
+    <!-- MISSÃO 7 -->
+    <section class="section-card">
+      <div class="card-head"><div class="badge-num num-2">7</div><div><h2>Missão 7 — O Mistério dos Cancelamentos</h2><span class="badge-cmd">WHERE • JOIN • COUNT • SUM</span></div></div>
+      <div class="answer-box"><p class="answer-text">🎯 <strong>Resposta:</strong> <span id="m7-total">0</span> pedidos cancelados, somando <span id="m7-valor" class="val-hl c-rose">R$ 0,00</span>.</p></div>
+      <h3 class="table-title">Clientes afetados:</h3><div id="m7-clientes" class="tag-flow"></div>
+    </section>
+
+    <!-- MISSÃO 8 -->
+    <section class="section-card">
+      <div class="card-head"><div class="badge-num num-3">8</div><div><h2>Missão 8 — O Clube VIP</h2><span class="badge-cmd">JOIN • GROUP BY • HAVING • ORDER BY</span></div></div>
+      <div class="answer-box"><p class="answer-text">🎯 <strong>Resposta:</strong> Clientes que gastaram mais de R$ 3.000,00 em pedidos entregues.</p></div>
+      <div class="table-box"><table class="clean-table"><thead><tr><th>Cliente</th><th>Total gasto</th></tr></thead><tbody id="m8-corpo"></tbody></table></div>
+    </section>
+
+    <!-- MISSÃO 9 -->
+    <section class="section-card">
+      <div class="card-head"><div class="badge-num num-4">9</div><div><h2>Missão 9 — Qual Categoria Domina?</h2><span class="badge-cmd">JOIN • GROUP BY • SUM • ORDER BY</span></div></div>
+      <div class="answer-box"><p class="answer-text">🎯 <strong>Resposta:</strong> A categoria que mais faturou foi <span id="m9-top" class="val-hl c-cyan">--</span>.</p></div>
+      <div class="table-box"><table class="clean-table"><thead><tr><th>Categoria</th><th>Faturamento</th></tr></thead><tbody id="m9-corpo"></tbody></table></div>
+    </section>
+
+    <!-- MISSÃO 10 -->
+    <section class="section-card">
+      <div class="card-head"><div class="badge-num num-5">10</div><div><h2>Missão 10 — A Grande Decisão</h2><span class="badge-cmd">RELATÓRIO FINAL</span></div></div>
+      <h3 class="table-title">Cinco clientes que mais gastaram em pedidos entregues</h3>
+      <div class="table-box"><table class="clean-table"><thead><tr><th>Ranking</th><th>Cliente</th><th>Total gasto</th></tr></thead><tbody id="m10-clientes"></tbody></table></div>
+      <h3 class="table-title">Três produtos com mais unidades vendidas em pedidos entregues</h3>
+      <div class="table-box"><table class="clean-table"><thead><tr><th>Ranking</th><th>Produto</th><th>Unidades</th></tr></thead><tbody id="m10-produtos"></tbody></table></div>
+      <h3 class="table-title">Faturamento por categoria</h3>
+      <div class="table-box"><table class="clean-table"><thead><tr><th>Categoria</th><th>Faturamento</th></tr></thead><tbody id="m10-categorias"></tbody></table></div>
+      <h3 class="table-title">Três recomendações para a loja</h3><div id="m10-recomendacoes" class="tag-flow"></div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="container text-center">
+      <p>GeekShop &copy; 2026 — Desafio de Análise SQL | Respostas das 10 missões</p>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

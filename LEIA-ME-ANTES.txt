@@ -1,0 +1,26 @@
+GEEKSHOP — COMO FAZER AS RESPOSTAS REAIS APARECEREM
+
+1) NÃO execute schema.sql no banco loja_geek existente. Ele contém DROP TABLE e pode apagar tabelas.
+2) No HeidiSQL, conectado como um usuário administrador, crie um usuário de leitura para o site:
+
+CREATE USER 'geekshop_app'@'localhost' IDENTIFIED BY 'TROQUE_POR_UMA_SENHA_FORTE';
+GRANT SELECT ON loja_geek.* TO 'geekshop_app'@'localhost';
+FLUSH PRIVILEGES;
+
+Se CREATE USER disser que a conta já existe, use ALTER USER:
+ALTER USER 'geekshop_app'@'localhost' IDENTIFIED BY 'TROQUE_POR_UMA_SENHA_FORTE';
+GRANT SELECT ON loja_geek.* TO 'geekshop_app'@'localhost';
+FLUSH PRIVILEGES;
+
+3) Edite backend/.env e coloque a mesma senha que definiu no SQL em DB_PASSWORD.
+4) No terminal, entre na pasta backend e rode:
+   npm install
+   npm start
+5) Abra http://localhost:3000
+6) Para testar se a conexão está funcionando, abra http://localhost:3000/api/saude
+   Deve aparecer conectado:true e total_clientes com o número real do banco.
+7) Para ver as respostas da API, abra http://localhost:3000/api/respostas.
+
+A página consulta os dados automaticamente a cada 3 segundos. Isso atualiza a visualização após mudanças feitas no HeidiSQL. A página não cria ou apaga registros; ela lê as alterações existentes.
+
+O backend não usa dados fictícios. Se alguma consulta falhar, a API retorna um erro detalhado em vez de inventar resultados.
